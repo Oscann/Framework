@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-export function getDirs() {
+export function getUrl() {
     const data = fs.readdirSync('./pages', {recursive: true})
     return data
 }

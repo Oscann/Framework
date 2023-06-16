@@ -1,14 +1,15 @@
 import express from 'express'
 import fs from 'fs'
-import { getDirs } from './utils.js'
+import { getUrl } from './utils'
 
 const app = express()
+app.use(express.json())
 
-const test = fs.readdirSync('./pages')
+const files = fs.readdirSync('src/pages', {recursive: true}) as string[]
 
-console.log(getDirs())
+console.log(files)
 
-for (const pages of test) {
+for (const pages of files) {
 
     const url = `/${pages.split('.')[0]}`
 
