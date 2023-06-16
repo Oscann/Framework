@@ -1,10 +1,17 @@
 import express from 'express'
+import fs from 'fs'
+import { getDirs } from './utils.js'
 
 const app = express()
 
-const test = ['/test', '/test2']
+const test = fs.readdirSync('./pages')
 
-for (const url of test) {
+console.log(getDirs())
+
+for (const pages of test) {
+
+    const url = `/${pages.split('.')[0]}`
+
     app.get(url, (req, res) => {
         res.send("Hello, World!")
     })
