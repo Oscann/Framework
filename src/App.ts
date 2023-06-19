@@ -1,17 +1,18 @@
 import express from 'express'
 import fs from 'fs'
-import { getUrl } from './utils'
+import { formatURL, getPagesPaths } from './utils'
+import t from '../src/pages/index'
 
 const app = express()
 app.use(express.json())
 
-const files = fs.readdirSync('src/pages', {recursive: true}) as string[]
+const files = getPagesPaths('src/pages')
+const urls = formatURL(files)
 
-console.log(files)
+console.log(urls)
 
-for (const pages of files) {
-
-    const url = `/${pages.split('.')[0]}`
+for (const url of urls) {
+    import(`../src/pages${url}`).then(console.log)
 
     app.get(url, (req, res) => {
         res.send("Hello, World!")
