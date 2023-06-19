@@ -1,7 +1,6 @@
 import express from 'express'
 import fs from 'fs'
 import { formatURL, getPagesPaths } from './utils'
-import t from './pages/index'
 
 const app = express()
 app.use(express.json())
