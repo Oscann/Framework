@@ -12,7 +12,7 @@ console.log(urls)
 
 for (const url of urls) {
     import(`./pages${url}`).then(pageData => {
-        app.get(url, (req, res) => {
+        app.get(url.replace('index', ''), (req, res) => {
             res.send(pageData.default())
         })
     })
